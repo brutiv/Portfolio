@@ -9,12 +9,12 @@
 body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
-    background-color: #f8f9fa;
-    color: #333;
+    background-image: url("./images/background.jpg");
+    color: #fff;
 }
 
 header {
-    background-color: #343a40;
+    background-color: rgba(0,0,0,0.1);
     color: #fff;
     padding: 1rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -36,7 +36,7 @@ header nav ul li a {
 }
 
 .hero {
-    background-color: #007bff;
+    background-color: rgba(0,0,0,0.1);
     color: #fff;
     padding: 4rem 0;
     text-align: center;
@@ -65,7 +65,7 @@ header nav ul li a {
     margin-bottom: 3rem;
     padding: 2rem;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: rgba(0,0,0,0.1);
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: transform 0.3s ease-in-out;
 }
@@ -77,12 +77,12 @@ header nav ul li a {
 .project h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
-    color: #007bff;
+    color: #6a2675;
 }
 
 .project a {
     text-decoration: none;
-    color: #007bff;
+    color: #6a2675;
     transition: color 0.3s ease;
 }
 
@@ -92,7 +92,7 @@ header nav ul li a {
 
 .project p {
     font-size: 1.2rem;
-    color: #555;
+    color: #fff;
 }
 
 .contact {
@@ -116,7 +116,7 @@ header nav ul li a {
 }
 
 .contact a {
-    color: #007bff;
+    color: #6a2675;
     text-decoration: none;
 }
 
@@ -139,7 +139,7 @@ header nav ul li a {
 }
 
 .social-links a {
-    color: #007bff;
+    color: #6a2675;
     text-decoration: none;
     font-weight: bold;
     display: flex;
@@ -152,7 +152,7 @@ header nav ul li a {
 }
 
 .footer {
-    background-color: #343a40;
+    background-color: #ff00d5;
     color: #fff;
     text-align: center;
     padding: 1rem;
