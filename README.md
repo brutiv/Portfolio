@@ -1,4 +1,4 @@
-Portfolio — Brutiv
+Portfolio - Brutiv
 
 This is a small personal portfolio website built with plain HTML, CSS and a tiny bit of JavaScript.
 
