@@ -34,7 +34,26 @@ document.addEventListener('DOMContentLoaded', () => {
   const socialIcons = document.querySelectorAll('.social-icon');
   const badges = document.querySelectorAll('.badge');
 
-  const cursor = document.querySelector('.custom-cursor');
+  let cursor = document.querySelector('.custom-cursor');
+  // Create a fallback custom cursor element if it's missing in the DOM
+  if (!cursor) {
+    cursor = document.createElement('div');
+    cursor.className = 'custom-cursor';
+    Object.assign(cursor.style, {
+      position: 'fixed',
+      left: '0px',
+      top: '0px',
+      width: '8px',
+      height: '8px',
+      background: 'rgba(255,255,255,0.9)',
+      borderRadius: '50%',
+      pointerEvents: 'none',
+      transform: 'translate(-50%, -50%)',
+      display: 'none',
+      zIndex: '9999'
+    });
+    document.body.appendChild(cursor);
+  }
   const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
 
   if (isTouchDevice) {
@@ -338,22 +357,26 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // --- Theme buttons ---
-  homeButton.addEventListener('click', () => {
-    switchTheme('assets/background.mp4', backgroundMusic, 'home-theme');
-  });
-  homeButton.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    switchTheme('assets/background.mp4', backgroundMusic, 'home-theme');
-  });
+  // --- Music-only buttons (disable theme changes) ---
+  function setMusic(audio) {
+    try {
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+      }
+    } catch (e) { /* ignore */ }
+    currentAudio = audio;
+    currentAudio.volume = volumeSlider ? volumeSlider.value : 0.5;
+    currentAudio.muted = isMuted;
+    currentAudio.play().catch(err => console.error('Failed to play selected music:', err)).finally(() => updatePlayPauseIcon());
+  }
 
-  hackerButton.addEventListener('click', () => {
-    switchTheme('assets/hacker_background.mp4', hackerMusic, 'hacker-theme', hackerOverlay, false);
-  });
-  hackerButton.addEventListener('touchstart', (e) => {
-    e.preventDefault();
-    switchTheme('assets/hacker_background.mp4', hackerMusic, 'hacker-theme', hackerOverlay, false);
-  });
+  // Make the numeric buttons only switch music now
+  homeButton.addEventListener('click', () => setMusic(backgroundMusic));
+  homeButton.addEventListener('touchstart', (e) => { e.preventDefault(); setMusic(backgroundMusic); });
+
+  hackerButton.addEventListener('click', () => setMusic(hackerMusic));
+  hackerButton.addEventListener('touchstart', (e) => { e.preventDefault(); setMusic(hackerMusic); });
 
 
 
