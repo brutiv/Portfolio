@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const backgroundVideo = document.getElementById('background');
   if (backgroundVideo) {
     backgroundVideo.muted = true;
+    backgroundVideo.loop = true;
     backgroundVideo.play().catch(err => console.error("Failed to play background video:", err));
   }
 
@@ -285,6 +286,13 @@ document.addEventListener('DOMContentLoaded', () => {
       ease: 'power2.in',
       onComplete: () => {
         backgroundVideo.src = videoSrc;
+        backgroundVideo.loop = true;
+        try {
+          backgroundVideo.load();
+          backgroundVideo.play().catch(err => console.error("Failed to play switched background video:", err));
+        } catch (e) {
+          console.error('Error loading/playing switched background video:', e);
+        }
 
         if (currentAudio) {
           currentAudio.pause();
