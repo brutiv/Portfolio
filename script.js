@@ -27,8 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const profileBlock = document.getElementById('profile-block');
   const skillsBlock = document.getElementById('skills-block');
   const pythonBar = document.getElementById('python-bar');
-  const cppBar = document.getElementById('cpp-bar');
-  const csharpBar = document.getElementById('csharp-bar');
+  const javascriptBar = document.getElementById('javascript-bar');
   const resultsHint = document.getElementById('results-hint');
   const profilePicture = document.querySelector('.profile-picture');
   const profileContainer = document.querySelector('.profile-container');
@@ -429,8 +428,7 @@ document.addEventListener('DOMContentLoaded', () => {
           skillsBlock.classList.remove('hidden');
           gsap.fromTo(skillsBlock, { x: 100, opacity: 0 }, { x: 0, opacity: 1, duration: 0.5, ease: 'power2.out' });
           gsap.to(pythonBar, { width: '87%', duration: 2, ease: 'power2.out' });
-          gsap.to(cppBar, { width: '75%', duration: 2, ease: 'power2.out' });
-          gsap.to(csharpBar, { width: '80%', duration: 2, ease: 'power2.out' });
+          gsap.to(javascriptBar, { width: '50%', duration: 2, ease: 'power2.out' });
         }
       });
       resultsHint.classList.remove('hidden');
