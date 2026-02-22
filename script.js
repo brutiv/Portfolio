@@ -18,6 +18,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const resultsButton = document.getElementById('results-theme');
   const volumeIcon = document.getElementById('volume-icon');
   const volumeSlider = document.getElementById('volume-slider');
+  const playPauseButton = document.getElementById('play-pause-button');
+  const playPauseIcon = document.getElementById('play-pause-icon');
   const hackerOverlay = document.getElementById('hacker-overlay');
   const snowOverlay = document.getElementById('snow-overlay');
   const glitchOverlay = document.querySelector('.glitch-overlay');
@@ -99,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     backgroundMusic.muted = false;
     backgroundMusic.play().catch(err => {
       console.error("Failed to play music after start:", err);
-    });
+    }).finally(() => updatePlayPauseIcon());
     profileBlock.classList.remove('hidden');
     gsap.fromTo(profileBlock,
       { opacity: 0, y: -50 },
@@ -237,6 +239,31 @@ document.addEventListener('DOMContentLoaded', () => {
     volumeIcon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>`;
   });
 
+  // --- Play / Pause control ---
+  function updatePlayPauseIcon() {
+    if (!playPauseIcon) return;
+    if (!currentAudio || currentAudio.paused) {
+      playPauseIcon.innerHTML = `<path d="M6 4v16l12-8z"></path>`;
+    } else {
+      playPauseIcon.innerHTML = `<path d="M6 5h4v14H6zM14 5h4v14h-4z"></path>`;
+    }
+  }
+
+  function togglePlayPause() {
+    if (!currentAudio) return;
+    if (currentAudio.paused) {
+      currentAudio.play().catch(err => console.error('Play failed:', err));
+    } else {
+      currentAudio.pause();
+    }
+    updatePlayPauseIcon();
+  }
+
+  if (playPauseButton) {
+    playPauseButton.addEventListener('click', (e) => { e.preventDefault(); togglePlayPause(); });
+    playPauseButton.addEventListener('touchstart', (e) => { e.preventDefault(); togglePlayPause(); });
+  }
+
 
 
   // --- Theme switcher ---
@@ -266,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
         currentAudio = audio;
         currentAudio.volume = volumeSlider.value;
         currentAudio.muted = isMuted;
-        currentAudio.play().catch(err => console.error("Failed to play theme music:", err));
+        currentAudio.play().catch(err => console.error("Failed to play theme music:", err)).finally(() => updatePlayPauseIcon());
 
         document.body.classList.remove('home-theme', 'hacker-theme', 'rain-theme', 'anime-theme', 'car-theme');
         document.body.classList.add(themeClass);
@@ -419,5 +446,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   // --- Kick off ---
+  try { updatePlayPauseIcon(); } catch (e) { /* ignore if not available */ }
   typeWriterStart();
 });

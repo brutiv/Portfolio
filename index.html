@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brutiv Profile</title>
+
+    <meta name="description" content="Brutiv portfolio.">
+    <meta name="keywords" content="Brutiv, developer, portfolio, Python, JavaScript, Node, GitHub, Discord">
+    <meta name="author" content="Brutiv">
+    <meta name="theme-color" content="#000000">
+    <link rel="icon" href="assets/favicon.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="assets/profile.jpg">
+
+    <meta property="og:title" content="Brutiv">
+    <meta property="og:description" content="Creative developer portfolio showcasing projects, skills, and contact info.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://brutiv.example.com/">
+    <meta property="og:image" content="https://brutiv.example.com/assets/profile.jpg">
+    <meta property="og:image:alt" content="Brutiv profile picture">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Brutiv">
+    <meta name="twitter:description" content="Creative developer portfolio showcasing projects, skills, and contact info.">
+    <meta name="twitter:image" content="https://brutiv.example.com/assets/profile.jpg">
+    <meta name="twitter:site" content="@brutiv">
+    <meta name="twitter:creator" content="@brutiv">
+
     <style>
         * {
             margin: 0;
@@ -13,7 +35,7 @@
         }
         
         body:not(.touch-device) {
-            cursor: none;
+            cursor: default;
         }
 
         body {
@@ -992,6 +1014,11 @@
 
 
         <div class="top-controls">
+            <button id="play-pause-button" class="theme-button" title="Play / Pause music" aria-label="Play or pause music">
+                <svg id="play-pause-icon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor">
+                    <path d="M6 4v16l12-8z"></path>
+                </svg>
+            </button>
             <div class="volume-control">
                 <svg id="volume-icon" class="volume-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
